@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Ticaret Portalım - Premium E-Ticaret Demoları</title>
+  <link rel="stylesheet" href="shared/css/main.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+      margin: 0;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: -10%; left: -10%;
+      width: 50%; height: 50%;
+      background: radial-gradient(circle, rgba(148, 163, 184, 0.15) 0%, transparent 60%);
+      z-index: -1;
+      filter: blur(80px);
+    }
+    body::after {
+      content: '';
+      position: absolute;
+      top: 30%; right: -10%;
+      width: 50%; height: 50%;
+      background: radial-gradient(circle, rgba(100, 116, 139, 0.12) 0%, transparent 60%);
+      z-index: -1;
+      filter: blur(80px);
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 16px 0;
+    }
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar-logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.02em;
+    }
+    .navbar-logo span {
+      background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .navbar-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+    .navbar-links a {
+      color: #475569;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      font-size: 16px;
+    }
+    .navbar-links a:hover {
+      color: #0f172a;
+    }
+    .nav-btn {
+      background: #e2e8f0;
+      border: 1px solid #cbd5e1;
+      padding: 10px 24px;
+      border-radius: 12px;
+      color: #0f172a !important;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .nav-btn:hover {
+      background: #cbd5e1;
+      color: #0f172a !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 30px;
+      color: #475569;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+    .hero-section h1 {
+      color: #0f172a;
+      font-size: 64px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+      line-height: 1.15;
+      max-width: 900px;
+      margin-inline: auto;
+    }
+    .hero-section h1 span {
+      background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-section p {
+      color: #64748b;
+      font-size: 20px;
+      max-width: 650px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+      color: #0f172a;
+      padding: 16px 36px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px -5px rgba(148, 163, 184, 0.4);
+      transition: all 0.3s ease;
+      border: 1px solid #94a3b8;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 15px 30px -5px rgba(100, 116, 139, 0.5);
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    }
+    .btn-secondary {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 16px 36px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .btn-secondary:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+      transform: translateY(-2px);
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 80px 0;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 60px;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 40px 32px;
+      transition: all 0.3s ease;
+      text-align: left;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .feature-card:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 24px;
+      background: #f1f5f9;
+      width: 72px; height: 72px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 20px;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+    }
+    .feature-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+    .feature-card p {
+      color: #64748b;
+      line-height: 1.6;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    /* Demos Section */
+    .demos-section {
+      padding: 80px 0;
+    }
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 32px;
+      padding: 20px 0 100px;
+    }
+    .showcase-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .showcase-card:hover {
+      transform: translateY(-12px);
+      border-color: #94a3b8;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    }
+    .showcase-card-icon {
+      font-size: 38px;
+      margin-bottom: 28px;
+      background: #f1f5f9;
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .showcase-card:hover .showcase-card-icon {
+      transform: scale(1.15) rotate(8deg);
+      background: #e2e8f0;
+    }
+    .showcase-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .showcase-card p {
+      color: #64748b;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+      flex-grow: 1;
+      font-weight: 400;
+    }
+    .showcase-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .showcase-feature-badge {
+      background-color: #f8fafc;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      letter-spacing: 0.01em;
+      transition: all 0.3s ease;
+    }
+    .showcase-card:hover .showcase-feature-badge {
+      background-color: #f1f5f9;
+      color: #475569;
+      border-color: #cbd5e1;
+    }
+    .showcase-btn {
+      width: 100%;
+      background: #f8fafc;
+      color: #334155;
+      padding: 16px;
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+    .showcase-btn:hover {
+      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+      color: #0f172a;
+      border-color: #94a3b8;
+      box-shadow: 0 10px 20px -5px rgba(148, 163, 184, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 40px;
+      margin: 60px auto 100px;
+      max-width: 1100px;
+      text-align: center;
+      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+      border-radius: 32px;
+      position: relative;
+      overflow: hidden;
+      color: #0f172a;
+      box-shadow: 0 25px 50px -12px rgba(148, 163, 184, 0.3);
+      border: 1px solid #94a3b8;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 40%);
+      z-index: 0;
+    }
+    .cta-section > * {
+      position: relative;
+      z-index: 1;
+    }
+    .cta-section h2 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 20px;
+      color: #334155;
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+    .cta-section .btn-primary {
+      background: #0f172a;
+      color: #ffffff;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+      border: none;
+    }
+    .cta-section .btn-primary:hover {
+      box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
+      background: #1e293b;
+    }
+
+    /* Footer */
+    .showcase-footer {
+      padding: 40px 20px;
+      text-align: center;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+    }
+    .showcase-footer p {
+      color: #64748b;
+      font-size: 15px;
+      margin: 0;
+    }
+    .showcase-footer a {
+      color: #334155 !important;
+    }
+    .showcase-footer a:hover {
+      color: #0f172a !important;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section h1 { font-size: 42px; }
+      .navbar-links { display: none; }
+      .hero-buttons { flex-direction: column; }
+    }
+
+    /* Stats Section */
+    .stats-section {
+      padding: 60px 0;
+      background-color: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+    .stat-item {
+      padding: 20px;
+    }
+    .stat-number {
+      font-size: 54px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      color: #64748b;
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      padding: 80px 0;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 40px;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .pricing-card.popular {
+      border: 2px solid #94a3b8;
+      transform: scale(1.05);
+      box-shadow: 0 20px 25px -5px rgba(100, 116, 139, 0.15);
+      z-index: 2;
+    }
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .pricing-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+    .pricing-price {
+      font-size: 54px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .pricing-price span {
+      font-size: 18px;
+      color: #64748b;
+      font-weight: 500;
+    }
+    .pricing-desc {
+      color: #64748b;
+      font-size: 15px;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 36px 0;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: #475569;
+      font-size: 15px;
+    }
+    .pricing-features li i {
+      color: #94a3b8;
+      font-size: 22px;
+    }
+    .pricing-btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 16px;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-sizing: border-box;
+    }
+    .pricing-btn-outline {
+      background: #f8fafc;
+      color: #0f172a;
+      border: 1px solid #e2e8f0;
+    }
+    .pricing-btn-outline:hover {
+      background: #e2e8f0;
+    }
+    .pricing-btn-solid {
+      background: linear-gradient(135deg, #334155 0%, #0f172a 100%);
+      color: #ffffff;
+      border: 1px solid #0f172a;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    .pricing-btn-solid:hover {
+      background: #1e293b;
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+    @media (max-width: 992px) {
+      .pricing-card.popular {
+        transform: none;
+      }
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 80px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+      border-color: #cbd5e1;
+    }
+    .faq-summary {
+      padding: 24px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #0f172a;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+    }
+    .faq-summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-icon {
+      font-size: 24px;
+      color: #94a3b8;
+      transition: transform 0.3s ease;
+    }
+    details[open] .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-content {
+      padding: 0 24px 24px;
+      color: #64748b;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+    <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="#" class="navbar-logo">
+        E-Ticaret <span>Portalım</span>
+      </a>
+      <div class="navbar-links">
+        <a href="#ozellikler">Özellikler</a>
+        <a href="#demolar">Çözümlerimiz</a>
+        <a href="#iletisim">İletişim</a>
+        <a href="#" class="nav-btn">Hemen Başla</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+    <header class="hero-section">
+    <div class="container">
+      <div class="hero-badge"><i class="ph ph-rocket-launch"></i> Yeni Nesil E-Ticaret Altyapısı</div>
+      <h1>İşletmenizi Dijitale Taşımanın <span>En Güçlü Yolu</span></h1>
+      <p>Sınırları ortadan kaldırın. Satışlarınızı artırmak için ihtiyacınız olan yüksek hızlı, güvenli ve modern e-ticaret çözümleri ile tanışın.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary">Hemen Başla</a>
+        <a href="#demolar" class="btn-secondary">Çözümleri İncele</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Aktif Mağaza</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">600 BİN+</div>
+          <div class="stat-label">Başarılı Sipariş</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">%99.9</div>
+          <div class="stat-label">Uptime Garantisi</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">7/24</div>
+          <div class="stat-label">Teknik Destek</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+    <section id="ozellikler" class="features-section">
+    <div class="container">
+      <h2 class="section-title">Neden Bizi Seçmelisiniz?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="ph ph-lightning"></i></div>
+          <h3>Yüksek Performans</h3>
+          <p>Müşterileriniz beklemesin. Optimize edilmiş altyapımızla ışık hızında sayfa yükleme süreleri ve kesintisiz alışveriş deneyimi sunun.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="ph ph-lock-key"></i></div>
+          <h3>Maksimum Güvenlik</h3>
+          <p>Gelişmiş SSL sertifikaları, güvenli ödeme altyapıları ve günlük yedeklemelerle hem sizin hem de müşterilerinizin verileri güvende.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="ph ph-device-mobile"></i></div>
+          <h3>%100 Mobil Uyumlu</h3>
+          <p>Satışların %70'inin mobilden geldiğini biliyoruz. Tamamen mobil öncelikli tasarımlarımızla her cihazda kusursuz görünün.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="ph ph-trend-up"></i></div>
+          <h3>Gelişmiş SEO</h3>
+          <p>Arama motorlarında üst sıralara çıkmak artık daha kolay. Otomatik sitemap, gelişmiş meta etiket yönetimi ve temiz URL yapısı.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demos Section -->
+  <section id="demolar" class="demos-section">
+    <h2 class="section-title">Sektörünüze Özel Hazır Çözümler</h2>
+    <div class="container">
+      <div class="showcase-grid">
+      
+      <!-- Card 1 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-t-shirt"></i></div>
+        <h3>Moda & Giyim</h3>
+        <p>Aura Boutique: Modern kesimler, büyük hero bannerı ve şık ürün kartlarıyla giyim odaklı e-ticaret şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Filtreler</span>
+          <span class="showcase-feature-badge">Sepet Drawer</span>
+          <span class="showcase-feature-badge">Checkout</span>
+        </div>
+        <a href="moda-giyim/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-plug"></i></div>
+        <h3>Elektronik & Teknoloji</h3>
+        <p>VoltTech: Akıllı cihazlar, kulaklık ve klavyeler için yüksek teknolojili, koyu gri aksanlı minimalist şablon.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Garanti Rozetleri</span>
+          <span class="showcase-feature-badge">Teknik Detaylar</span>
+          <span class="showcase-feature-badge">Stok Takibi</span>
+        </div>
+        <a href="elektronik-teknoloji/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-armchair"></i></div>
+        <h3>Ev, Yaşam & Dekorasyon</h3>
+        <p>Nesta Home: Seramikler, aydınlatma ve minimalist ev tekstili ürünleri için bol boşluklu, doğal tonlu şablon.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Kırılma Garantisi</span>
+          <span class="showcase-feature-badge">El Yapımı</span>
+          <span class="showcase-feature-badge">FAQ</span>
+        </div>
+        <a href="ev-dekorasyon/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-leaf"></i></div>
+        <h3>Kozmetik & Kişisel Bakım</h3>
+        <p>PureGlow: Temiz içerikli vegan cilt bakım ürünleri, nemlendiriciler ve tonikler için tazeleyici, soft yeşil tonlu şablon.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Cruelty-Free</span>
+          <span class="showcase-feature-badge">Cilt Tipi Filtresi</span>
+          <span class="showcase-feature-badge">C Vitamini</span>
+        </div>
+        <a href="kozmetik-guzellik/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-sneaker"></i></div>
+        <h3>Spor & Outdoor</h3>
+        <p>ActiveGear: Dry-Fit taytlar, dambıllar ve outdoor ekipmanlar için enerji dolu, hareket odaklı e-ticaret şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Ağırlık Setleri</span>
+          <span class="showcase-feature-badge">Dry-Fit</span>
+          <span class="showcase-feature-badge">Blog</span>
+        </div>
+        <a href="spor-outdoor/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-paw-print"></i></div>
+        <h3>Evcil Hayvan Market</h3>
+        <p>PawStore: Dostlarımız için lezzetli mamalar, ortopedik yataklar ve tasmalar sunan patili e-ticaret şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Mama Filtresi</span>
+          <span class="showcase-feature-badge">Tasma Setleri</span>
+          <span class="showcase-feature-badge">Ödül Maması</span>
+        </div>
+        <a href="pet-shop/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-apple-logo"></i></div>
+        <h3>Organik Market & Gurme</h3>
+        <p>GreenGrocer: Dalından taze sebze ve meyveler, soğuk sıkım zeytinyağları ve bal çeşitleri için doğal şablon.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Sertifikalı Organik</span>
+          <span class="showcase-feature-badge">Soğuk Sıkım</span>
+          <span class="showcase-feature-badge">Taze Manav</span>
+        </div>
+        <a href="organik-gida/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-baby"></i></div>
+        <h3>Bebek & Oyuncak</h3>
+        <p>MiniMundo: Eğitici ahşap oyuncaklar ve organik pamuklu muslin tulumlar için şirin ve güvenli bebek şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Organik Muslin</span>
+          <span class="showcase-feature-badge">BPA-Free</span>
+          <span class="showcase-feature-badge">CE Belgeli</span>
+        </div>
+        <a href="bebek-oyuncak/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-watch"></i></div>
+        <h3>Saat & Takı Aksesuar</h3>
+        <p>Chronos: Lüks safir camlı kol saatleri, tektaş yüzükler ve gümüş kolyeler için parıltılı şık şablon.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Otomatik Saat</span>
+          <span class="showcase-feature-badge">925 Gümüş</span>
+          <span class="showcase-feature-badge">Tektaş</span>
+        </div>
+        <a href="saat-taki/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-books"></i></div>
+        <h3>Kitap & Kırtasiye</h3>
+        <p>Novella: Çok satan romanlar, lüks dolma kalemler ve hakiki deri A5 defterler için entelektüel şablon.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Özel Baskı</span>
+          <span class="showcase-feature-badge">Deri Defter</span>
+          <span class="showcase-feature-badge">Dolma Kalem</span>
+        </div>
+        <a href="kitap-kirtasiye/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-coffee"></i></div>
+        <h3>Nitelikli Kahve & Çay</h3>
+        <p>RoastMasters: Ethiopia ve Colombia çekirdekleri, seramik V60 demleyiciler ve Matcha tozu içeren aromatik şablon.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Taze Kavrum</span>
+          <span class="showcase-feature-badge">V60 Demleme</span>
+          <span class="showcase-feature-badge">Japon Matchası</span>
+        </div>
+        <a href="kahve-cay/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 12 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-boot"></i></div>
+        <h3>Ayakkabı & Çanta</h3>
+        <p>Solecraft: Chelsea süet botlar, mumlu kanvas sırt çantaları ve çılgın deri cüzdanlar için rustik deri odaklı şablon.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Hakiki Deri</span>
+          <span class="showcase-feature-badge">Chelsea Bot</span>
+          <span class="showcase-feature-badge">Karton Cüzdan</span>
+        </div>
+        <a href="ayakkabi-canta/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 13 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-flower"></i></div>
+        <h3>Çiçek & Hediyelik</h3>
+        <p>Bloombox: Çift dallı orkideler, kırmızı güller, özel sukulent teraryumlar ve gurme hediye kutuları şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Aynı Gün Teslim</span>
+          <span class="showcase-feature-badge">Hediye Zarfı</span>
+          <span class="showcase-feature-badge">Saksı Çiçeği</span>
+        </div>
+        <a href="cicek-hediye/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 14 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-guitar"></i></div>
+        <h3>Müzik Enstrümanları</h3>
+        <p>Melody Shop: Akustik gitarlar, stüdyo referans kulaklıkları ve 25 tuş midi klavyeler içeren müzikal e-ticaret şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">MIDI Klavye</span>
+          <span class="showcase-feature-badge">Kondenser Mik</span>
+          <span class="showcase-feature-badge">Referans Kulaklık</span>
+        </div>
+        <a href="muzik-enstrumanlari/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 15 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-palette"></i></div>
+        <h3>Hobi & El Sanatları</h3>
+        <p>Artisan Box: Akrilik boya setleri, astar kaplı tuvaller, samur fırçalar ve havada kuruyan killer içeren sanatsal şablon.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Hava Kili</span>
+          <span class="showcase-feature-badge">Resim Şövalesi</span>
+          <span class="showcase-feature-badge">Akrilik Boya</span>
+        </div>
+        <a href="hobi-sanat/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 16 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-car"></i></div>
+        <h3>Oto Aksesuar & Bakım</h3>
+        <p>DriveWell: Araç içi 4K kameralar, seramik katkılı hızlı cilalar ve 3D havuzlu paspaslar içeren otomotiv şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">4K Kayıt</span>
+          <span class="showcase-feature-badge">Seramik Cila</span>
+          <span class="showcase-feature-badge">3D Paspas</span>
+        </div>
+        <a href="oto-aksesuar/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 17 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-pill"></i></div>
+        <h3>Sağlık, Vitamin & Wellness</h3>
+        <p>Vitaly: Kolajen peptitler, sporcu whey proteinleri ve multivitamin kompleksleri sunan zinde yaşam şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Tarım Bakanlığı</span>
+          <span class="showcase-feature-badge">Sığır Kolajeni</span>
+          <span class="showcase-feature-badge">Proteini Tozu</span>
+        </div>
+        <a href="saglik-wellness/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 18 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-tent"></i></div>
+        <h3>Kamp & Karavan Ekipmanları</h3>
+        <p>Campfire: 3 mevsim su geçirmez çadırlar, uyku tulumları, portatif ocaklar ve kamp mobilyaları şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">Su Geçirmez</span>
+          <span class="showcase-feature-badge">Kamp Ocağı</span>
+          <span class="showcase-feature-badge">Katlanır Sandalye</span>
+        </div>
+        <a href="kamp-karavan/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 19 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-desktop"></i></div>
+        <h3>Ofis & Çalışma Alanı</h3>
+        <p>ErgoDesk: Fileli ofis koltukları, meşe masalar, yün keçe desk matler ve monitör yükselticiler içeren modern ofis şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">ErgoChair</span>
+          <span class="showcase-feature-badge">Yün Keçe Mat</span>
+          <span class="showcase-feature-badge">Monitör Işığı</span>
+        </div>
+        <a href="ofis-calisma/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+      <!-- Card 20 -->
+      <div class="showcase-card">
+        <div class="showcase-card-icon"><i class="ph ph-eyeglasses"></i></div>
+        <h3>Gözlük & Optik</h3>
+        <p>Optica: Polarize pilot güneş gözlükleri, mavi ışık bilgisayar gözlükleri ve retro kemik çerçeveler şablonu.</p>
+        <div class="showcase-features">
+          <span class="showcase-feature-badge">UV400</span>
+          <span class="showcase-feature-badge">Mavi Işık</span>
+          <span class="showcase-feature-badge">Polarize Cam</span>
+        </div>
+        <a href="gozluk-optik/index.html" class="showcase-btn">Önizlemedir ➜</a>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+
+  <!-- Pricing Section -->
+  <section id="fiyatlandirma" class="pricing-section">
+    <div class="container">
+      <h2 class="section-title">Paketler</h2>
+      <div class="pricing-grid" style="max-width: 800px;">
+        
+        <!-- Hazır Paketli Site -->
+        <div class="pricing-card">
+          <h3 class="pricing-name">Hazır Paketli Site</h3>
+          <p class="pricing-desc">Standart ihtiyaçlara anında çözüm üreten, hızlıca satışa başlayabileceğiniz kullanıma hazır e-ticaret paketi.</p>
+          <ul class="pricing-features">
+            <li><i class="ph ph-check-circle"></i> Sınırsız Ürün Ekleme</li>
+            <li><i class="ph ph-check-circle"></i> Sektörel Hazır Temalar</li>
+            <li><i class="ph ph-check-circle"></i> Güvenli Ödeme Altyapısı</li>
+            <li><i class="ph ph-check-circle"></i> Temel SEO Araçları</li>
+            <li><i class="ph ph-check-circle"></i> Ücretsiz SSL Sertifikası</li>
+          </ul>
+          <a href="#" class="pricing-btn pricing-btn-outline">Detayları İncele</a>
+        </div>
+
+        <!-- Custom Paket -->
+        <div class="pricing-card popular">
+          <div class="popular-badge">SİZE ÖZEL</div>
+          <h3 class="pricing-name">Custom Paket</h3>
+          <p class="pricing-desc">Sınırları ortadan kaldıran, tamamen markanıza özel tasarlanmış uçtan uca e-ticaret çözümü.</p>
+          <ul class="pricing-features">
+            <li><i class="ph ph-check-circle" style="color: #0f172a;"></i> Size Özel Arayüz Tasarımı</li>
+            <li><i class="ph ph-check-circle" style="color: #0f172a;"></i> ERP / Muhasebe Entegrasyonu</li>
+            <li><i class="ph ph-check-circle" style="color: #0f172a;"></i> Pazaryeri Entegrasyonları</li>
+            <li><i class="ph ph-check-circle" style="color: #0f172a;"></i> Özel Sunucu Mimarisi</li>
+            <li><i class="ph ph-check-circle" style="color: #0f172a;"></i> 7/24 Özel VIP Destek</li>
+          </ul>
+          <a href="#" class="pricing-btn pricing-btn-solid">Teklif Alın</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="sss" class="faq-section">
+    <div class="container">
+      <h2 class="section-title">Sıkça Sorulan Sorular</h2>
+      <div class="faq-container">
+        
+        <details class="faq-item" name="faq">
+          <summary class="faq-summary">
+            Kendi alan adımı (domain) kullanabilir miyim?
+            <i class="ph ph-plus faq-icon"></i>
+          </summary>
+          <div class="faq-content">
+            Evet, halihazırda sahip olduğunuz alan adını hiçbir ek ücret ödemeden sistemimize yönlendirebilirsiniz. Eğer alan adınız yoksa, teknik ekibimiz sizin adınıza satın alma ve kurulum işlemlerini gerçekleştirebilir.
+          </div>
+        </details>
+
+        <details class="faq-item" name="faq">
+          <summary class="faq-summary">
+            Ödeme altyapısı kurulumu nasıl oluyor? Ekstra komisyon var mı?
+            <i class="ph ph-plus faq-icon"></i>
+          </summary>
+          <div class="faq-content">
+            Sistemimiz Iyzico, PayTR, Stripe ve tüm bankaların sanal POS'ları ile tam entegredir. Biz Tigin Teknoloji olarak satışlarınızdan hiçbir komisyon almıyoruz. Sadece çalıştığınız ödeme kuruluşunun belirlediği standart komisyon oranları geçerlidir.
+          </div>
+        </details>
+
+        <details class="faq-item" name="faq">
+          <summary class="faq-summary">
+            Sistemi kullanmak için teknik bilgiye ihtiyacım var mı?
+            <i class="ph ph-plus faq-icon"></i>
+          </summary>
+          <div class="faq-content">
+            Kesinlikle hayır. Yönetim panelimiz, daha önce hiç web sitesi yönetmemiş kullanıcıların bile rahatlıkla ürün ekleyebileceği, kargo takibi yapabileceği sadelikte tasarlanmıştır. Ayrıca detaylı eğitim videolarımız mevcuttur.
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+    <section class="cta-section">
+    <div class="container">
+      <h2>E-Ticaret'e Adım Atmaya Hazır mısınız?</h2>
+      <p>Kendi profesyonel online mağazanızı bugün kurun, anında satışa başlayın.</p>
+      <a href="#" class="btn-primary">Uzmanımızla Görüşün</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="iletisim" class="showcase-footer" style="padding: 60px 20px 40px; text-align: left;">
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; border-bottom: 1px solid #e2e8f0; padding-bottom: 40px; margin-bottom: 30px;">
+      
+      <div style="flex: 1; min-width: 250px;">
+        <a href="#" class="navbar-logo" style="margin-bottom: 20px; display: inline-flex;">
+          E-Ticaret <span>Portalım</span>
+        </a>
+        <p style="color: #64748b; font-size: 15px; line-height: 1.6; max-width: 300px; text-align: left; margin: 0;">
+          İşletmenizi dijitale taşımanın en güçlü yolu. Profesyonel e-ticaret çözümleri ile satışlarınızı artırın.
+        </p>
+      </div>
+
+      <div style="flex: 1; min-width: 250px;">
+        <h4 style="font-size: 18px; color: #0f172a; margin-bottom: 24px; font-weight: 700; margin-top: 0;">İletişim</h4>
+        <div style="color: #64748b; font-size: 15px; line-height: 1.8; display: flex; flex-direction: column; gap: 16px; text-align: left;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <i class="ph ph-map-pin" style="font-size: 22px; color: #94a3b8; margin-top: 2px;"></i>
+            <span>Söğütözü Cad. No: 2<br>Koç Kuleleri C Blok 17<br>Çankaya / Ankara</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <i class="ph ph-envelope-simple" style="font-size: 22px; color: #94a3b8;"></i>
+            <a href="mailto:info@tiginteknoloji.tr" style="color: #64748b; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#0f172a'" onmouseout="this.style.color='#64748b'">info@tiginteknoloji.tr</a>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <i class="ph ph-phone" style="font-size: 22px; color: #94a3b8;"></i>
+            <a href="tel:08503037846" style="color: #64748b; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#0f172a'" onmouseout="this.style.color='#64748b'">0850 303 78 46</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+      <p style="color: #94a3b8; font-size: 14px; margin: 0;">© 2026 Tigin Teknoloji. Tüm hakları saklıdır.</p>
+      <p style="margin: 0; font-size: 14px; color: #94a3b8;">
+        Prod by <a href="https://tiginteknoloji.com.tr/" target="_blank" style="color: #94a3b8; text-decoration: none; font-weight: 600; transition: color 0.3s;" onmouseover="this.style.color='#0f172a'" onmouseout="this.style.color='#94a3b8'">Tigin Teknoloji</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
